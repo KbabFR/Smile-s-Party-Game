@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn0o0okcihphg"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_c0rkc"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("score_text", "scoreboard_text")]
+script = ExtResource("1_c0rkc")
+score_text = NodePath("score")
+scoreboard_text = NodePath("score_board")
+
+[node name="plus_one" type="Button" parent="."]
+offset_left = 579.0
+offset_top = 393.0
+offset_right = 744.0
+offset_bottom = 462.0
+text = "+1"
+
+[node name="score" type="RichTextLabel" parent="."]
+offset_left = 489.0
+offset_top = 81.0
+offset_right = 832.0
+offset_bottom = 163.0
+text = "0"
+
+[node name="game_over" type="Button" parent="."]
+offset_left = 1033.0
+offset_top = 449.0
+offset_right = 1128.0
+offset_bottom = 514.0
+text = "Game Over"
+
+[node name="score_board" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_top = 92.0
+offset_right = 252.0
+offset_bottom = 489.0
+
+[connection signal="button_down" from="plus_one" to="." method="_on_plus_one_button_down"]
+[connection signal="button_down" from="game_over" to="." method="_on_game_over_button_down"]
