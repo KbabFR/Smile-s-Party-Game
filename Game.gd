@@ -50,8 +50,13 @@ func record_score():
 func scoreboardtext_update():
 	var text = []
 	if scoreboard.size() > 1:
-		for score in scoreboard.values().sort_custom(func(a,b): return a > b):
-			text.append("{0}\t{1}".format("".num_int64(scoreboard.find_key(score)), "".num_int64(score)))
+		var scores = scoreboard.values()
+		scores.sort_custom(func(a, b): return a > b)
+		if scores.size() > 10: scores.resize(10)
+		var penta = scoreboard.duplicate()
+		for score in scores:
+			text.append("{0}\t{1}".format(["".num_int64(penta.find_key(score)), "".num_int64(score)]))
+			penta.erase(penta.find_key(score))
 		scoreboard_text.text = "\n".join(text)
 	else:
-		scoreboard_text.text = "{0}\t{1}".format("".num_int64(scoreboard.keys()[0]), "".num_int64(scoreboard.values()[0]))
+		scoreboard_text.text = "{0}\t{1}".format(["".num_int64(scoreboard.keys()[0]), "".num_int64(scoreboard.values()[0])])
